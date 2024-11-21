@@ -50,7 +50,6 @@ jobs:
         run: |
           $filePath = "CPPProject\libsegment_tree.dll"
           if (Test-Path $filePath) {
-            # Если файл существует, выводим его полный путь
             Write-Host "DLL file exists! Full path: $(Resolve-Path $filePath)"
           } else {
             Write-Host "DLL file not found!"
