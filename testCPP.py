@@ -1,9 +1,8 @@
 import os
 import ctypes
-import platform
 import unittest
 
-lib_name = "libsegment_tree.so" if platform.system() == "Linux" else "libsegment_tree.dll"
+lib_name = "libsegment_tree.so"
 lib_path = os.path.join(os.path.dirname(__file__), "CPPProject", lib_name)
 
 segment_tree = ctypes.CDLL(lib_path)
