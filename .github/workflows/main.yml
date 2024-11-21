@@ -43,7 +43,7 @@ jobs:
       # Компиляция C++ библиотеки для Windows
       - name: Build C++ library (Windows)
         if: matrix.os == 'windows-latest'
-        run: g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp
+        run: g++ -shared -o D:\a\ITMO_programming_tools_lab4\ITMO_programming_tools_lab4\CPPProject\libsegment_tree.dll D:\a\ITMO_programming_tools_lab4\ITMO_programming_tools_lab4\CPPProjectsegment_tree.cpp
 
       # Шаг 4: Устанавливаем зависимости
       - name: Install Python dependencies
