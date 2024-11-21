@@ -24,15 +24,13 @@ jobs:
           python-version: 3
 
       # Шаг 3: Забилдить os для разных операционных систем
-      - name: Install build tools (Linux)
+      - name: Build C++ library (Linux)
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get update && sudo apt-get install -y g++ make
+        run: g++ -shared -o CPPProject/libsegment_tree.so CPPProject/segment_tree.cpp -fPIC
 
-      - name: Install build tools (Windows)
+      - name: Build C++ library (Windows)
         if: matrix.os == 'windows-latest'
-        run: |
-          choco install mingw -y
-          echo C:\ProgramData\chocolatey\lib\mingw\tools\install\bin >> $GITHUB_PATH
+        run: g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp
 
       - name: Build C++ library
         run: |
