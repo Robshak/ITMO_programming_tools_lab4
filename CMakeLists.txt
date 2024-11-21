@@ -39,6 +39,3 @@ endif ()
 if (UNIX)
     target_compile_options(${LIBRARY_NAME} PRIVATE -fPIC)
 endif ()
-
-# Тесты (если нужны)
-enable_testing()
