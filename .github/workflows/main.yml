@@ -62,6 +62,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set up Visual Studio build environment
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+
       - name: Compile C++ code (Windows)
         run: |
           cl /LD /EHsc CPPProject/segment_tree.cpp /link /out:CPPProject/libsegment_tree.dll
