@@ -4,7 +4,7 @@ import platform
 import ctypes
 
 lib_name = "libsegment_tree.so" if platform.system() == "Linux" else "segment_tree.dll"
-lib_path = os.path.join(os.path.dirname(__file__), "../build", lib_name)
+lib_path = os.path.abspath(os.path.dirname(__file__), "../build", lib_name)
 
 segment_tree = ctypes.CDLL(lib_path)
 
