@@ -27,8 +27,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python get-pip.py
-          pip install pytest  # Для запуска unit-тестов
-          pip install <дополнительные зависимости, если нужны>
+          pip install pytest
 
       # Шаг 4: Запуск тестов
       - name: Run tests
