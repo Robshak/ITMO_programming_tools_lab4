@@ -8,7 +8,7 @@ segment_tree = ctypes.CDLL(lib_path)
 class Node(ctypes.Structure):
     _fields_ = [("min", ctypes.c_int), ("max", ctypes.c_int), ("sum", ctypes.c_int)]
 
-# Установка аргументов и типов для функций
+# Setting arguments and types for functions
 segment_tree.initialize_tree.argtypes = [ctypes.c_int]
 segment_tree.build_wrapper.argtypes = [ctypes.c_int]
 segment_tree.update_wrapper.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int]
