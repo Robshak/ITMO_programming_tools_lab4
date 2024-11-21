@@ -16,8 +16,8 @@ endif ()
 
 # Указать исходные файлы
 set(SOURCES
-    src/segment_tree.cpp
-    src/segment_tree.h
+    CPPProject/src/segment_tree.cpp
+    CPPProject/src/segment_tree.h
 )
 
 # Создать библиотеку
