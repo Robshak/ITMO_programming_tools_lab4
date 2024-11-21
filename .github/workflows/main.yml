@@ -43,7 +43,7 @@ jobs:
       # Компиляция C++ библиотеки для Windows
       - name: Build C++ library (Windows)
         if: matrix.os == 'windows-latest'
-        run: g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp -fPIC
+        run: g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp -m64
 
       - name: Check if DLL file exists (Windows - PowerShell)
         if: matrix.os == 'windows-latest'
