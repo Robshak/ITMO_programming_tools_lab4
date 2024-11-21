@@ -26,11 +26,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Install dependencies for Python
+      # Install dependencies for Python (без unittest)
       - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install unittest
+        run: python -m pip install --upgrade pip
 
       # Build C++ project
       - name: Build C++ project
