@@ -45,15 +45,15 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp
 
-      - name: Check if DLL file exists (Windows - CMD)
+      - name: Check if DLL file exists (Windows - PowerShell)
         if: matrix.os == 'windows-latest'
         run: |
-          cmd /c "if exist CPPProject\libsegment_tree.dll (
-            echo DLL file exists!
-          ) else (
-            echo DLL file not found!
-            exit /b 1
-          )"
+          if (Test-Path "CPPProject\libsegment_tree.dll") {
+            Write-Host "DLL file exists!"
+          } else {
+            Write-Host "DLL file not found!"
+            exit 1
+          }
 
       # Шаг 4: Устанавливаем зависимости
       - name: Install Python dependencies
