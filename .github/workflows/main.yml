@@ -23,12 +23,28 @@ jobs:
         with:
           python-version: 3
 
-      # Шаг 3: Устанавливаем зависимости
+      # Шаг 3: Забилдить os для разных операционных систем
+      name: Install build tools (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y g++ make
+
+      - name: Install build tools (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install mingw -y
+          echo "::add-path::C:\tools\mingw64\bin"
+
+      - name: Build C++ library
+        run: |
+          g++ -shared -o CPPProject/libsegment_tree.so CPPProject/segment_tree.cpp -fPIC  # Для Linux
+          if [[ $RUNNER_OS == 'Windows' ]]; then g++ -shared -o CPPProject/libsegment_tree.dll CPPProject/segment_tree.cpp; fi
+
+      # Шаг 4: Устанавливаем зависимости
       - name: Install Python dependencies
         run: |
           python get-pip.py
           pip install pytest
 
-      # Шаг 4: Запуск тестов
+      # Шаг 5: Запуск тестов
       - name: Run tests
         run: python testCPP.py
