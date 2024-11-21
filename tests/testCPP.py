@@ -1,12 +1,14 @@
-import os
-import ctypes
-import platform
 import unittest
+import os
+import platform
+import ctypes
 
-lib_name = "libsegment_tree.so" if platform.system() == "Linux" else "libsegment_tree.dll"
-lib_path = os.path.join(os.path.dirname(__file__), "CPPProject", lib_name)
+lib_name = "libsegment_tree.so" if platform.system() == "Linux" else "segment_tree.dll"
+lib_path = os.path.join(os.path.dirname(__file__), "../CPPProject", lib_name)
 
 segment_tree = ctypes.CDLL(lib_path)
+
+
 
 class Node(ctypes.Structure):
     _fields_ = [("min", ctypes.c_int), ("max", ctypes.c_int), ("sum", ctypes.c_int)]
