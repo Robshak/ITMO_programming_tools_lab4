@@ -1,0 +1,35 @@
+name: Run Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      # Шаг 1: Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Шаг 2: Устанавливаем Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      # Шаг 3: Устанавливаем зависимости
+      - name: Install Python dependencies
+        run: |
+          python get-pip.py
+          pip install pytest  # Для запуска unit-тестов
+          pip install <дополнительные зависимости, если нужны>
+
+      # Шаг 4: Запуск тестов
+      - name: Run tests
+        run: python testCPP.py
