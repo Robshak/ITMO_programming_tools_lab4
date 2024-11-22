@@ -10,6 +10,7 @@ on:
 
 jobs:
   test:
+    name: C++ Library Tests
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
