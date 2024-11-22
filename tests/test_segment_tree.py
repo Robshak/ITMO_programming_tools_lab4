@@ -11,6 +11,8 @@ if platform.system() == "Windows":
 
 if not os.path.exists(lib_path):
     raise FileNotFoundError(f"Library not found at {lib_path}")
+else:
+    raise Exception(f"Library found at {lib_path}")
 
 segment_tree = ctypes.CDLL(lib_path)
 
