@@ -4,9 +4,11 @@ import platform
 import ctypes
 
 lib_name = "libsegment_tree.so" if platform.system() == "Linux" else "segment_tree.dll"
-lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), lib_name))
+lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build", lib_name))
 
-import os
+if platform.system() == "Windows":
+    lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), lib_name))
+
 if not os.path.exists(lib_path):
     raise FileNotFoundError(f"Library not found at {lib_path}")
 
