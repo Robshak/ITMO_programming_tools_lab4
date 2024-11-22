@@ -38,17 +38,17 @@ jobs:
           cmake ../src
           cmake --build . --config Release
 
-      - name: Run tests
+      - name: Copy DLL for Windows
+        if: runner.os == 'Windows'
+        run: copy build\Release\segment_tree.dll tests\segment_tree.dll
+
+      - name: Run tests (Windows)
         env:
           lib_name: "segment_tree.dll" # Windows
           lib_path: "${{ github.workspace }}\\build\\segment_tree.dll"
         if: runner.os == 'Windows'
         run: |
           python -m unittest discover -s tests -p "*.py"
-
-      - name: Copy DLL for Windows
-        if: runner.os == 'Windows'
-        run: copy build\Release\segment_tree.dll tests\segment_tree.dll
 
       - name: Run tests (Linux)
         env:
