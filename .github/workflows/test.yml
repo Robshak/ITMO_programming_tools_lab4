@@ -27,7 +27,7 @@ jobs:
           python-version: "3.9"
 
       - name: Install pip
-        run: python get-pip.py
+        run: python -m ensurepip --upgrade
 
       - name: Install dependencies
         run: pip install unittest-xml-reporting
@@ -44,6 +44,7 @@ jobs:
         run: copy build\Release\segment_tree.dll tests\segment_tree.dll
 
       - name: Run tests (Windows)
+        id: test-windows
         env:
           lib_name: "segment_tree.dll" # Windows
           lib_path: "${{ github.workspace }}\\build\\segment_tree.dll"
@@ -52,9 +53,28 @@ jobs:
           python -m unittest discover -s tests -p "*.py"
 
       - name: Run tests (Linux)
+        id: test-linux
         env:
           lib_name: "libsegment_tree.so" # Linux
           lib_path: "${{ github.workspace }}/build/libsegment_tree.so"
         if: runner.os == 'Linux'
         run: |
           python -m unittest discover -s tests -p "*.py"
+
+      # Публикация статуса проверки
+      - name: Set GitHub Commit Status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const status = (job.status === 'success') ? 'success' : 'failure';
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: status,
+              context: "C++ Library Tests",
+              description: status === 'success' ? 'All tests passed successfully!' : 'Some tests failed!',
+              target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            })
+        env:
+          job-status: ${{ job.status }}
