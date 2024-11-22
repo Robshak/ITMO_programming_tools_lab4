@@ -66,7 +66,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const status = (job.status === 'success') ? 'success' : 'failure';
+            const status = (process.env.JOB_STATUS === 'success') ? 'success' : 'failure';
             github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -77,4 +77,4 @@ jobs:
               target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
             })
         env:
-          job-status: ${{ job.status }}
+          JOB_STATUS: ${{ job.status }}
