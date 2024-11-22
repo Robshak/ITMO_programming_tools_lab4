@@ -4,4 +4,3 @@ project(SegmentTree)
 set(CMAKE_CXX_STANDARD 17)
 add_library(segment_tree SHARED segment_tree.cpp)
 target_compile_definitions(segment_tree PRIVATE EXPORT_DLL)
-
