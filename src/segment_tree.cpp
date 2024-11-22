@@ -1,4 +1,9 @@
 #include <vector>
+#ifdef _WIN32
+#define EXPORT __declspec(dllexport)
+#else
+#define EXPORT
+#endif
 
 const int inf = 1e9;
 
@@ -61,19 +66,19 @@ Node query(int v, int l, int r, int ql, int qr) {
 }
 
 extern "C" {
-void initialize_tree(int n) {
+EXPORT void initialize_tree(int n) {
     tree.resize(4 * n);
 }
 
-void build_wrapper(int n) {
+EXPORT void build_wrapper(int n) {
     build(0, 0, n);
 }
 
-void update_wrapper(int pos, int new_val, int n) {
+EXPORT void update_wrapper(int pos, int new_val, int n) {
     update(0, 0, n, pos, new_val);
 }
 
-Node query_wrapper(int ql, int qr, int n) {
+EXPORT Node query_wrapper(int ql, int qr, int n) {
     Node res = query(0, 0, n, ql, qr);
     return res;
 }
