@@ -48,7 +48,7 @@ jobs:
 
       - name: Copy DLL for Windows
         if: runner.os == 'Windows'
-        run: copy build\segment_tree.dll tests\segment_tree.dll
+        run: copy build\Release\segment_tree.dll tests\segment_tree.dll
 
       - name: Run tests (Linux)
         env:
