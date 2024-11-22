@@ -35,7 +35,7 @@ class TestSegmentTree(unittest.TestCase):
 
     def test_initial_values(self):
         result = segment_tree.query_wrapper(0, 32, self.size)
-        self.assertEqual(result.min, 1)
+        self.assertEqual(result.min, 0)
         self.assertEqual(result.max, 0)
         self.assertEqual(result.sum, 0)
 
